@@ -614,7 +614,7 @@
         <div class="post-body">
           <div class="post-caption"><b>Samantha 💕</b> A little softer, a little bolder, a little more me 🖤
 Some moods don’t need color</div>
-          <div class="post-time">1h</div>
+          <div class="post-time" data-time="2025-09-29T09:30:00"></div>
         </div>
       </div>
 
@@ -851,33 +851,90 @@ Sometimes that’s enough to make my day</div>
     </div>
   </footer>
 
-  <script>
-    window.addEventListener('load', function () {
-      const loader = document.getElementById('page-loader');
-      setTimeout(() => {
-        loader.classList.add('hide');
-      }, 650);
-    });
+ <script>
+  const EASTERN_TIMEZONE = 'America/New_York';
 
-    function openModal(imageSrc) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      modalImg.src = imageSrc;
-      modal.classList.add('show');
-      document.body.style.overflow = 'hidden';
+  window.addEventListener('load', function () {
+    const loader = document.getElementById('page-loader');
+    setTimeout(() => {
+      loader.classList.add('hide');
+    }, 650);
+
+    updatePostTimes();
+  });
+
+  function openModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = imageSrc;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  function getEasternNow() {
+    const now = new Date();
+    const easternString = now.toLocaleString('en-US', { timeZone: EASTERN_TIMEZONE });
+    return new Date(easternString);
+  }
+
+  function parseEasternDate(dateString) {
+    return new Date(dateString);
+  }
+
+  function formatTimeAgo(dateString) {
+    const nowEastern = getEasternNow();
+    const postDateEastern = parseEasternDate(dateString);
+    const diffMs = nowEastern - postDateEastern;
+
+    if (isNaN(postDateEastern.getTime()) || diffMs < 0) {
+      return '';
     }
 
-    function closeModal() {
-      const modal = document.getElementById('imageModal');
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
+    const minute = 60 * 1000;
+    const hour = 60 * minute;
+    const day = 24 * hour;
+    const week = 7 * day;
+    const month = 30 * day;
+    const year = 365 * day;
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
+    if (diffMs < minute) {
+      return 'just now';
+    }
+    if (diffMs < hour) {
+      return Math.floor(diffMs / minute) + 'm';
+    }
+    if (diffMs < day) {
+      return Math.floor(diffMs / hour) + 'h';
+    }
+    if (diffMs < week) {
+      return Math.floor(diffMs / day) + 'd';
+    }
+    if (diffMs < month) {
+      return Math.floor(diffMs / week) + 'w';
+
+  function updatePostTimes() {
+    const timeElements = document.querySelectorAll('.post-time[data-time]');
+    timeElements.forEach(function(el) {
+      const dateString = el.getAttribute('data-time');
+      el.textContent = formatTimeAgo(dateString);
     });
+  }
+
+  setInterval(updatePostTimes, 60000);
   </script>
+</body>
+</html>
 </body>
 </html>
