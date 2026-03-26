@@ -5,6 +5,9 @@
   <title>Samantha 💕</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Instagram风格手写字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -12,9 +15,9 @@
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: #262626;
+      color: #000;
       background: linear-gradient(135deg, #ffe4ec, #ffffff);
+      font-family: 'Cookie', cursive;
     }
 
     .page {
@@ -59,9 +62,10 @@
     }
 
     .username {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 52px;
+      font-weight: normal;
       margin: 0;
+      color: #000;
     }
 
     .chat-btn {
@@ -70,8 +74,7 @@
       border-radius: 999px;
       text-decoration: none;
       color: white;
-      font-weight: 700;
-      font-size: 15px;
+      font-size: 24px;
       background: linear-gradient(135deg, #ff6f91, #ffb6c1);
       box-shadow: 0 4px 12px rgba(255, 105, 135, 0.35);
     }
@@ -84,7 +87,8 @@
       display: flex;
       gap: 22px;
       margin: 14px 0;
-      font-size: 15px;
+      font-size: 28px;
+      color: #000;
     }
 
     .stats span b {
@@ -92,31 +96,29 @@
     }
 
     .bio-name {
-      font-weight: 700;
+      font-size: 28px;
       margin-bottom: 6px;
-      font-size: 16px;
+      color: #000;
     }
 
     .bio {
-      color: #555;
+      color: #000;
       line-height: 1.6;
-      font-size: 15px;
+      font-size: 28px;
     }
 
     .online {
       margin-top: 10px;
-      color: #ff4d6d;
-      font-size: 14px;
-      font-weight: 600;
+      color: #000;
+      font-size: 24px;
     }
 
     .section-title {
       text-align: center;
-      font-size: 13px;
+      font-size: 28px;
       letter-spacing: 2px;
-      color: #777;
+      color: #000;
       margin: 24px 0 18px;
-      font-weight: 700;
     }
 
     .posts-grid {
@@ -140,21 +142,21 @@
     }
 
     .post-avatar {
-      width: 38px;
-      height: 38px;
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #ffd1dc;
     }
 
     .post-user {
-      font-weight: 700;
-      font-size: 14px;
+      font-size: 24px;
+      color: #000;
     }
 
     .post-location {
-      font-size: 12px;
-      color: #888;
+      font-size: 18px;
+      color: #000;
       margin-top: 2px;
     }
 
@@ -169,72 +171,22 @@
       height: auto;
     }
 
-    .post-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px 8px;
-      font-size: 24px;
-    }
-
-    .heart {
-      color: #ff4d6d;
-    }
-
-    .comment-icon,
-    .share-icon {
-      color: #444;
-    }
-
-    .post-likes {
-      padding: 0 16px;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
     .post-caption {
-      padding: 0 16px;
-      font-size: 14px;
+      padding: 16px;
+      font-size: 24px;
       line-height: 1.6;
-      margin-bottom: 10px;
-      color: #333;
+      color: #000;
     }
 
     .post-caption b {
       margin-right: 6px;
     }
 
-    .comment-box {
-      margin: 0 16px 14px;
-      background: #fafafa;
-      border-radius: 14px;
-      padding: 10px 12px;
-      text-align: left;
-    }
-
-    .comment-line {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 4px;
-    }
-
-    .comment-line:last-child {
-      margin-bottom: 0;
-    }
-
-    .comment-line b {
-      color: #333;
-      margin-right: 6px;
-    }
-
     .post-time {
       padding: 0 16px 16px;
-      font-size: 11px;
-      color: #999;
+      font-size: 18px;
+      color: #000;
       letter-spacing: 0.6px;
-      text-transform: uppercase;
     }
 
     .modal {
@@ -286,12 +238,28 @@
       }
 
       .username {
-        font-size: 28px;
+        font-size: 42px;
       }
 
       .profile-pic {
         width: 120px;
         height: 120px;
+      }
+
+      .bio,
+      .bio-name,
+      .stats,
+      .section-title,
+      .post-user,
+      .post-caption {
+        font-size: 22px;
+      }
+
+      .post-location,
+      .post-time,
+      .online,
+      .chat-btn {
+        font-size: 18px;
       }
     }
   </style>
@@ -305,7 +273,7 @@
       <div class="profile-info">
         <div class="profile-top-row">
           <h1 class="username">Samantha 💕</h1>
-          <a class="chat-btn" href="https://t.me/Samantha12_design" target="_blank">💌 Chat with me</a>
+          <a class="chat-btn" href="https://t.me/Samantha12_design" target="_blank">Chat with me</a>
         </div>
 
         <div class="stats">
@@ -316,16 +284,16 @@
 
         <div class="bio-name">Samantha 💗</div>
         <div class="bio">
-          💕 US-based <br>
-          Love chatting & meeting new people 😘 <br>
-          I reply fast... don’t be shy 💬
+          US-based <br>
+          Love chatting & meeting new people <br>
+          I reply fast... don’t be shy
         </div>
 
-        <div class="online">🟢 Online now</div>
+        <div class="online">Online now</div>
       </div>
     </div>
 
-    <div class="section-title">POSTS</div>
+    <div class="section-title">Posts</div>
 
     <div class="posts-grid">
 
@@ -342,18 +310,7 @@
           <img class="post-image" src="555433581_18343464388162902_978328504126579607_n.jpg" alt="post 1">
         </div>
 
-        <div class="post-actions">
-          <span class="heart">❤</span>
-          <span class="comment-icon">💬</span>
-          <span class="share-icon">✈</span>
-        </div>
-
-        <div class="post-likes">3,284 likes</div>
-        <div class="post-caption"><b>Samantha 💕</b> sunlight, messy hair, and a little bit of attitude ❤️</div>
-        <div class="comment-box">
-          <div class="comment-line"><b>james</b> absolutely gorgeous</div>
-          <div class="comment-line"><b>matt</b> this light is perfect on you</div>
-        </div>
+        <div class="post-caption"><b>Samantha 💕</b> sunlight, messy hair, and a little bit of attitude</div>
         <div class="post-time">2 hours ago</div>
       </div>
 
@@ -370,18 +327,7 @@
           <img class="post-image" src="588671117_18355099480162902_7848445283481530813_n.jpg" alt="post 2">
         </div>
 
-        <div class="post-actions">
-          <span class="heart">❤</span>
-          <span class="comment-icon">💬</span>
-          <span class="share-icon">✈</span>
-        </div>
-
-        <div class="post-likes">4,019 likes</div>
-        <div class="post-caption"><b>Samantha 💕</b> soft moments always feel the prettiest 🌸</div>
-        <div class="comment-box">
-          <div class="comment-line"><b>alex</b> wow this is such a beautiful shot</div>
-          <div class="comment-line"><b>ryan</b> your vibe is unreal here</div>
-        </div>
+        <div class="post-caption"><b>Samantha 💕</b> soft moments always feel the prettiest</div>
         <div class="post-time">6 hours ago</div>
       </div>
 
@@ -398,18 +344,7 @@
           <img class="post-image" src="610606578_18356735614162902_4714442952993591081_n.jpg" alt="post 3">
         </div>
 
-        <div class="post-actions">
-          <span class="heart">❤</span>
-          <span class="comment-icon">💬</span>
-          <span class="share-icon">✈</span>
-        </div>
-
-        <div class="post-likes">2,947 likes</div>
-        <div class="post-caption"><b>Samantha 💕</b> late night rides and random thoughts ✨</div>
-        <div class="comment-box">
-          <div class="comment-line"><b>ethan</b> this one feels like a movie scene</div>
-          <div class="comment-line"><b>leo</b> okay this is my favorite</div>
-        </div>
+        <div class="post-caption"><b>Samantha 💕</b> late night rides and random thoughts</div>
         <div class="post-time">9 hours ago</div>
       </div>
 
@@ -426,18 +361,7 @@
           <img class="post-image" src="615335110_18357278509162902_588636589214450677_n.jpg" alt="post 4">
         </div>
 
-        <div class="post-actions">
-          <span class="heart">❤</span>
-          <span class="comment-icon">💬</span>
-          <span class="share-icon">✈</span>
-        </div>
-
-        <div class="post-likes">3,611 likes</div>
-        <div class="post-caption"><b>Samantha 💕</b> just enjoying the little things lately 🤍</div>
-        <div class="comment-box">
-          <div class="comment-line"><b>noah</b> your smile here is everything</div>
-          <div class="comment-line"><b>chris</b> this feels so natural and pretty</div>
-        </div>
+        <div class="post-caption"><b>Samantha 💕</b> just enjoying the little things lately</div>
         <div class="post-time">12 hours ago</div>
       </div>
 
@@ -454,18 +378,7 @@
           <img class="post-image" src="587816797_18355099489162902_6648671523064257105_n.jpg" alt="post 5">
         </div>
 
-        <div class="post-actions">
-          <span class="heart">❤</span>
-          <span class="comment-icon">💬</span>
-          <span class="share-icon">✈</span>
-        </div>
-
-        <div class="post-likes">4,432 likes</div>
-        <div class="post-caption"><b>Samantha 💕</b> good food, ocean breeze, and a happy me 🌊</div>
-        <div class="comment-box">
-          <div class="comment-line"><b>daniel</b> okay now I want to be there too</div>
-          <div class="comment-line"><b>owen</b> this whole vibe looks amazing</div>
-        </div>
+        <div class="post-caption"><b>Samantha 💕</b> good food, ocean breeze, and a happy me</div>
         <div class="post-time">1 day ago</div>
       </div>
 
