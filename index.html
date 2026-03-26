@@ -6,167 +6,486 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      text-align: center;
-      color: #333;
+      color: #262626;
       background: linear-gradient(135deg, #ffe4ec, #ffffff);
     }
 
-    .container {
-      padding: 50px 20px;
-      max-width: 900px;
+    .page {
+      max-width: 935px;
       margin: 0 auto;
+      padding: 30px 16px 60px;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+      background: rgba(255,255,255,0.45);
+      border-radius: 28px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
     }
 
     .profile-pic {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid white;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 4px solid white;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     }
 
-    h1 {
-      margin-top: 15px;
-      font-size: 28px;
+    .profile-info {
+      max-width: 420px;
+      text-align: left;
+    }
+
+    .profile-top-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .username {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .chat-btn {
+      display: inline-block;
+      padding: 11px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #ff6f91, #ffb6c1);
+      box-shadow: 0 4px 12px rgba(255, 105, 135, 0.35);
+    }
+
+    .chat-btn:hover {
+      opacity: 0.92;
+    }
+
+    .stats {
+      display: flex;
+      gap: 22px;
+      margin: 14px 0;
+      font-size: 15px;
+    }
+
+    .stats span b {
+      margin-right: 4px;
+    }
+
+    .bio-name {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 16px;
     }
 
     .bio {
-      color: #666;
-      font-size: 16px;
+      color: #555;
       line-height: 1.6;
-      margin-bottom: 25px;
+      font-size: 15px;
     }
 
-    .btn {
-      display: inline-block;
-      margin: 12px auto;
-      padding: 14px 24px;
-      border-radius: 30px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-      background: linear-gradient(135deg, #ff6f91, #ffb6c1);
-      box-shadow: 0 4px 12px rgba(255, 105, 135, 0.4);
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    .status {
+    .online {
       margin-top: 10px;
-      font-size: 14px;
       color: #ff4d6d;
-      margin-bottom: 30px;
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    .posts {
-      margin-top: 30px;
+    .section-title {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #777;
+      margin: 24px 0 18px;
+      font-weight: 700;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
     }
 
     .post-card {
       background: white;
-      width: 80%;
-      margin: 0 auto 25px auto;
-      padding: 15px;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
-    .post-card a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
     }
 
-    .post-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 15px;
+    .post-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffd1dc;
     }
 
-    .caption {
-      margin-top: 12px;
-      font-size: 15px;
-      color: #555;
-      line-height: 1.5;
+    .post-user {
+      font-weight: 700;
+      font-size: 14px;
     }
 
-    .hint {
+    .post-location {
       font-size: 12px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .post-image-wrap {
+      cursor: pointer;
+      background: #f8f8f8;
+    }
+
+    .post-image {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .post-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px 8px;
+      font-size: 24px;
+    }
+
+    .heart {
+      color: #ff4d6d;
+    }
+
+    .comment-icon,
+    .share-icon {
+      color: #444;
+    }
+
+    .post-likes {
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .post-caption {
+      padding: 0 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .post-caption b {
+      margin-right: 6px;
+    }
+
+    .comment-box {
+      margin: 0 16px 14px;
+      background: #fafafa;
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .comment-line {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .comment-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .comment-line b {
+      color: #333;
+      margin-right: 6px;
+    }
+
+    .post-time {
+      padding: 0 16px 16px;
+      font-size: 11px;
       color: #999;
-      margin-top: 6px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      color: white;
+      font-size: 34px;
+      cursor: pointer;
+      line-height: 1;
+      font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+      .profile-header {
+        gap: 20px;
+        padding: 22px 18px;
+      }
+
+      .profile-info {
+        text-align: center;
+      }
+
+      .profile-top-row,
+      .stats {
+        justify-content: center;
+      }
+
+      .username {
+        font-size: 28px;
+      }
+
+      .profile-pic {
+        width: 120px;
+        height: 120px;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
+  <div class="page">
 
-    <img class="profile-pic" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="profile">
+    <div class="profile-header">
+      <img class="profile-pic" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="profile">
 
-    <h1>Samantha 💕</h1>
+      <div class="profile-info">
+        <div class="profile-top-row">
+          <h1 class="username">Samantha 💕</h1>
+          <a class="chat-btn" href="https://t.me/Samantha12_design" target="_blank">💌 Chat with me</a>
+        </div>
 
-    <div class="bio">
-      💕 US-based <br>
-      Love chatting & meeting new people 😘 <br>
-      I reply fast... don’t be shy 💬
+        <div class="stats">
+          <span><b>5</b> posts</span>
+          <span><b>12.8k</b> followers</span>
+          <span><b>186</b> following</span>
+        </div>
+
+        <div class="bio-name">Samantha 💗</div>
+        <div class="bio">
+          💕 US-based <br>
+          Love chatting & meeting new people 😘 <br>
+          I reply fast... don’t be shy 💬
+        </div>
+
+        <div class="online">🟢 Online now</div>
+      </div>
     </div>
 
-    <a class="btn" href="https://t.me/Samantha12_design" target="_blank">💖 Tap here to chat with me</a>
+    <div class="section-title">POSTS</div>
 
-    <div class="status">🟢 Online now</div>
-
-    <div class="posts">
+    <div class="posts-grid">
 
       <div class="post-card">
-        <a href="555433581_18343464388162902_978328504126579607_n.jpg" target="_blank">
-          <img class="post-img" src="555433581_18343464388162902_978328504126579607_n.jpg" alt="post 1">
-          <div class="caption">sunlight, messy hair, and a little bit of attitude ❤️</div>
-          <div class="hint">tap photo to open</div>
-        </a>
+        <div class="post-header">
+          <img class="post-avatar" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="avatar">
+          <div>
+            <div class="post-user">Samantha 💕</div>
+            <div class="post-location">golden hour</div>
+          </div>
+        </div>
+
+        <div class="post-image-wrap" onclick="openModal('555433581_18343464388162902_978328504126579607_n.jpg')">
+          <img class="post-image" src="555433581_18343464388162902_978328504126579607_n.jpg" alt="post 1">
+        </div>
+
+        <div class="post-actions">
+          <span class="heart">❤</span>
+          <span class="comment-icon">💬</span>
+          <span class="share-icon">✈</span>
+        </div>
+
+        <div class="post-likes">3,284 likes</div>
+        <div class="post-caption"><b>Samantha 💕</b> sunlight, messy hair, and a little bit of attitude ❤️</div>
+        <div class="comment-box">
+          <div class="comment-line"><b>james</b> absolutely gorgeous</div>
+          <div class="comment-line"><b>matt</b> this light is perfect on you</div>
+        </div>
+        <div class="post-time">2 hours ago</div>
       </div>
 
       <div class="post-card">
-        <a href="588671117_18355099480162902_7848445283481530813_n.jpg" target="_blank">
-          <img class="post-img" src="588671117_18355099480162902_7848445283481530813_n.jpg" alt="post 2">
-          <div class="caption">soft moments always feel the prettiest 🌸</div>
-          <div class="hint">tap photo to open</div>
-        </a>
+        <div class="post-header">
+          <img class="post-avatar" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="avatar">
+          <div>
+            <div class="post-user">Samantha 💕</div>
+            <div class="post-location">soft morning</div>
+          </div>
+        </div>
+
+        <div class="post-image-wrap" onclick="openModal('588671117_18355099480162902_7848445283481530813_n.jpg')">
+          <img class="post-image" src="588671117_18355099480162902_7848445283481530813_n.jpg" alt="post 2">
+        </div>
+
+        <div class="post-actions">
+          <span class="heart">❤</span>
+          <span class="comment-icon">💬</span>
+          <span class="share-icon">✈</span>
+        </div>
+
+        <div class="post-likes">4,019 likes</div>
+        <div class="post-caption"><b>Samantha 💕</b> soft moments always feel the prettiest 🌸</div>
+        <div class="comment-box">
+          <div class="comment-line"><b>alex</b> wow this is such a beautiful shot</div>
+          <div class="comment-line"><b>ryan</b> your vibe is unreal here</div>
+        </div>
+        <div class="post-time">6 hours ago</div>
       </div>
 
       <div class="post-card">
-        <a href="610606578_18356735614162902_4714442952993591081_n.jpg" target="_blank">
-          <img class="post-img" src="610606578_18356735614162902_4714442952993591081_n.jpg" alt="post 3">
-          <div class="caption">late night rides and random thoughts ✨</div>
-          <div class="hint">tap photo to open</div>
-        </a>
+        <div class="post-header">
+          <img class="post-avatar" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="avatar">
+          <div>
+            <div class="post-user">Samantha 💕</div>
+            <div class="post-location">night ride</div>
+          </div>
+        </div>
+
+        <div class="post-image-wrap" onclick="openModal('610606578_18356735614162902_4714442952993591081_n.jpg')">
+          <img class="post-image" src="610606578_18356735614162902_4714442952993591081_n.jpg" alt="post 3">
+        </div>
+
+        <div class="post-actions">
+          <span class="heart">❤</span>
+          <span class="comment-icon">💬</span>
+          <span class="share-icon">✈</span>
+        </div>
+
+        <div class="post-likes">2,947 likes</div>
+        <div class="post-caption"><b>Samantha 💕</b> late night rides and random thoughts ✨</div>
+        <div class="comment-box">
+          <div class="comment-line"><b>ethan</b> this one feels like a movie scene</div>
+          <div class="comment-line"><b>leo</b> okay this is my favorite</div>
+        </div>
+        <div class="post-time">9 hours ago</div>
       </div>
 
       <div class="post-card">
-        <a href="615335110_18357278509162902_588636589214450677_n.jpg" target="_blank">
-          <img class="post-img" src="615335110_18357278509162902_588636589214450677_n.jpg" alt="post 4">
-          <div class="caption">just enjoying the little things lately 🤍</div>
-          <div class="hint">tap photo to open</div>
-        </a>
+        <div class="post-header">
+          <img class="post-avatar" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="avatar">
+          <div>
+            <div class="post-user">Samantha 💕</div>
+            <div class="post-location">city day</div>
+          </div>
+        </div>
+
+        <div class="post-image-wrap" onclick="openModal('615335110_18357278509162902_588636589214450677_n.jpg')">
+          <img class="post-image" src="615335110_18357278509162902_588636589214450677_n.jpg" alt="post 4">
+        </div>
+
+        <div class="post-actions">
+          <span class="heart">❤</span>
+          <span class="comment-icon">💬</span>
+          <span class="share-icon">✈</span>
+        </div>
+
+        <div class="post-likes">3,611 likes</div>
+        <div class="post-caption"><b>Samantha 💕</b> just enjoying the little things lately 🤍</div>
+        <div class="comment-box">
+          <div class="comment-line"><b>noah</b> your smile here is everything</div>
+          <div class="comment-line"><b>chris</b> this feels so natural and pretty</div>
+        </div>
+        <div class="post-time">12 hours ago</div>
       </div>
 
       <div class="post-card">
-        <a href="587816797_18355099489162902_6648671523064257105_n.jpg" target="_blank">
-          <img class="post-img" src="587816797_18355099489162902_6648671523064257105_n.jpg" alt="post 5">
-          <div class="caption">good food, ocean breeze, and a happy me 🌊</div>
-          <div class="hint">tap photo to open</div>
-        </a>
+        <div class="post-header">
+          <img class="post-avatar" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="avatar">
+          <div>
+            <div class="post-user">Samantha 💕</div>
+            <div class="post-location">beach lunch</div>
+          </div>
+        </div>
+
+        <div class="post-image-wrap" onclick="openModal('587816797_18355099489162902_6648671523064257105_n.jpg')">
+          <img class="post-image" src="587816797_18355099489162902_6648671523064257105_n.jpg" alt="post 5">
+        </div>
+
+        <div class="post-actions">
+          <span class="heart">❤</span>
+          <span class="comment-icon">💬</span>
+          <span class="share-icon">✈</span>
+        </div>
+
+        <div class="post-likes">4,432 likes</div>
+        <div class="post-caption"><b>Samantha 💕</b> good food, ocean breeze, and a happy me 🌊</div>
+        <div class="comment-box">
+          <div class="comment-line"><b>daniel</b> okay now I want to be there too</div>
+          <div class="comment-line"><b>owen</b> this whole vibe looks amazing</div>
+        </div>
+        <div class="post-time">1 day ago</div>
       </div>
 
     </div>
-
   </div>
+
+  <div class="modal" id="imageModal" onclick="closeModal()">
+    <span class="modal-close" onclick="closeModal()">×</span>
+    <img class="modal-content" id="modalImg" alt="big image">
+  </div>
+
+  <script>
+    function openModal(imageSrc) {
+      document.getElementById('modalImg').src = imageSrc;
+      document.getElementById('imageModal').classList.add('show');
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('show');
+    }
+  </script>
 </body>
 </html>
