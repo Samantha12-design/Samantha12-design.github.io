@@ -16,9 +16,11 @@
 
     .container {
       padding: 50px 20px;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    img {
+    .profile-pic {
       width: 120px;
       height: 120px;
       border-radius: 50%;
@@ -32,17 +34,17 @@
       font-size: 28px;
     }
 
-    p {
+    .bio {
       color: #666;
       font-size: 16px;
+      line-height: 1.6;
       margin-bottom: 25px;
     }
 
     .btn {
-      display: block;
+      display: inline-block;
       margin: 12px auto;
-      padding: 14px;
-      width: 220px;
+      padding: 14px 24px;
       border-radius: 30px;
       text-decoration: none;
       color: white;
@@ -60,54 +62,111 @@
       margin-top: 10px;
       font-size: 14px;
       color: #ff4d6d;
+      margin-bottom: 30px;
+    }
+
+    .posts {
+      margin-top: 30px;
+    }
+
+    .post-card {
+      background: white;
+      width: 80%;
+      margin: 0 auto 25px auto;
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .post-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .post-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+    }
+
+    .caption {
+      margin-top: 12px;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #999;
+      margin-top: 6px;
     }
   </style>
 </head>
 
 <body>
-
   <div class="container">
 
-    <img src="548644612_18341597428162902_406668402576467271_n.jpg" alt="profile">
+    <img class="profile-pic" src="548644612_18341597428162902_406668402576467271_n.jpg" alt="profile">
 
     <h1>Samantha 💕</h1>
 
-    <p>   💕 US-based <br>   Love chatting & meeting new people 😘 <br>   I reply fast… don’t be shy 💬 </p>
+    <div class="bio">
+      💕 US-based <br>
+      Love chatting & meeting new people 😘 <br>
+      I reply fast... don’t be shy 💬
+    </div>
 
-    <a class="btn" href="https://t.me/Samantha12_design">💖 Tap here to chat with me</a>
+    <a class="btn" href="https://t.me/Samantha12_design" target="_blank">💖 Tap here to chat with me</a>
 
     <div class="status">🟢 Online now</div>
-    <div style="margin-top:30px;">
-    <div style="margin-top:30px;">
 
-  <div style="background:white; width:80%; margin:0 auto 25px auto; padding:15px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-    <img src="555433581_18343464388162902_978328504126579607_n.jpg" style="width:100%; border-radius:15px;">
-    <p style="margin-top:12px; font-size:15px; color:#555;">sunlight, messy hair, and a little bit of attitude ❤️</p>
+    <div class="posts">
+
+      <div class="post-card">
+        <a href="555433581_18343464388162902_978328504126579607_n.jpg" target="_blank">
+          <img class="post-img" src="555433581_18343464388162902_978328504126579607_n.jpg" alt="post 1">
+          <div class="caption">sunlight, messy hair, and a little bit of attitude ❤️</div>
+          <div class="hint">tap photo to open</div>
+        </a>
+      </div>
+
+      <div class="post-card">
+        <a href="588671117_18355099480162902_7848445283481530813_n.jpg" target="_blank">
+          <img class="post-img" src="588671117_18355099480162902_7848445283481530813_n.jpg" alt="post 2">
+          <div class="caption">soft moments always feel the prettiest 🌸</div>
+          <div class="hint">tap photo to open</div>
+        </a>
+      </div>
+
+      <div class="post-card">
+        <a href="610606578_18356735614162902_4714442952993591081_n.jpg" target="_blank">
+          <img class="post-img" src="610606578_18356735614162902_4714442952993591081_n.jpg" alt="post 3">
+          <div class="caption">late night rides and random thoughts ✨</div>
+          <div class="hint">tap photo to open</div>
+        </a>
+      </div>
+
+      <div class="post-card">
+        <a href="615335110_18357278509162902_588636589214450677_n.jpg" target="_blank">
+          <img class="post-img" src="615335110_18357278509162902_588636589214450677_n.jpg" alt="post 4">
+          <div class="caption">just enjoying the little things lately 🤍</div>
+          <div class="hint">tap photo to open</div>
+        </a>
+      </div>
+
+      <div class="post-card">
+        <a href="587816797_18355099489162902_6648671523064257105_n.jpg" target="_blank">
+          <img class="post-img" src="587816797_18355099489162902_6648671523064257105_n.jpg" alt="post 5">
+          <div class="caption">good food, ocean breeze, and a happy me 🌊</div>
+          <div class="hint">tap photo to open</div>
+        </a>
+      </div>
+
+    </div>
+
   </div>
-
-  <div style="background:white; width:80%; margin:0 auto 25px auto; padding:15px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-    <img src="588671117_18355099480162902_7848445283481530813_n.jpg" style="width:100%; border-radius:15px;">
-    <p style="margin-top:12px; font-size:15px; color:#555;">soft moments always feel the prettiest 🌸</p>
-  </div>
-
-  <div style="background:white; width:80%; margin:0 auto 25px auto; padding:15px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-    <img src="610606578_18356735614162902_4714442952993591081_n.jpg" style="width:100%; border-radius:15px;">
-    <p style="margin-top:12px; font-size:15px; color:#555;">late night rides and random thoughts ✨</p>
-  </div>
-
-  <div style="background:white; width:80%; margin:0 auto 25px auto; padding:15px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-    <img src="615335110_18357278509162902_588636589214450677_n.jpg" style="width:100%; border-radius:15px;">
-    <p style="margin-top:12px; font-size:15px; color:#555;">just enjoying the little things lately 🤍</p>
-  </div>
-
-  <div style="background:white; width:80%; margin:0 auto 25px auto; padding:15px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-    <img src="587816797_18355099489162902_6648671523064257105_n.jpg" style="width:100%; border-radius:15px;">
-    <p style="margin-top:12px; font-size:15px; color:#555;">good food, ocean breeze, and a happy me 🌊</p>
-  </div>
-
-</div>
-
-  </div>
-
 </body>
 </html>
