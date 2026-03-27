@@ -873,91 +873,98 @@ Sometimes that’s enough to make my day</div>
   </footer>
 
   <script>
-    window.addEventListener('load', function () {
-      const loader = document.getElementById('page-loader');
+<script>
+  window.addEventListener('load', function () {
+    const loader = document.getElementById('page-loader');
 
-      try {
-        updatePostTimes();
-      } catch (err) {
-        console.log('updatePostTimes error:', err);
+    try {
+      updatePostTimes();
+    } catch (err) {
+      console.log('updatePostTimes error:', err);
+    }
+
+    setTimeout(() => {
+      if (loader) {
+        loader.classList.add('hide');
       }
+    }, 500);
+  });
 
-      setTimeout(() => {
-        if (loader) {
-          loader.classList.add('hide');
-        }
-      }, 500);
+  function openModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    if (!modal || !modalImg) return;
+
+    modalImg.src = imageSrc;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    if (!modal) return;
+
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  function formatTimeAgo(dateString) {
+    if (!dateString) return '';
+
+    const postDate = new Date(dateString);
+    const now = new Date();
+
+    if (isNaN(postDate.getTime())) {
+      return '';
+    }
+
+    const diffMs = now - postDate;
+
+    if (diffMs < 0) {
+      return 'Just now';
+    }
+
+    const minute = 60 * 1000;
+    const hour = 60 * minute;
+    const day = 24 * hour;
+    const week = 7 * day;
+    const year = 365 * day;
+
+    const minutes = Math.floor(diffMs / minute);
+    const hours = Math.floor(diffMs / hour);
+    const days = Math.floor(diffMs / day);
+    const weeks = Math.floor(diffMs / week);
+    const years = Math.floor(diffMs / year);
+
+    if (minutes < 3) return 'Just now';
+    if (minutes < 60) return minutes + 'm';
+    if (hours < 24) return hours + 'h';
+    if (days < 7) return days + 'd';
+    if (days < 365) return weeks + 'w';
+    return years + 'y';
+  }
+
+  function updatePostTimes() {
+    const timeElements = document.querySelectorAll('.post-time[data-time]');
+    timeElements.forEach(function(el) {
+      const dateString = el.getAttribute('data-time');
+      el.textContent = formatTimeAgo(dateString);
     });
+  }
 
-    function openModal(imageSrc) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      if (!modal || !modalImg) return;
-
-      modalImg.src = imageSrc;
-      modal.classList.add('show');
-      document.body.style.overflow = 'hidden';
+  setInterval(function () {
+    try {
+      updatePostTimes();
+    } catch (err) {
+      console.log('interval updatePostTimes error:', err);
     }
-
-    function closeModal() {
-      const modal = document.getElementById('imageModal');
-      if (!modal) return;
-
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    function formatTimeAgo(dateString) {
-      if (!dateString) return '';
-
-      const postDate = new Date(dateString);
-      const now = new Date();
-
-      if (isNaN(postDate.getTime())) {
-        return '';
-      }
-
-      const diffMs = now - postDate;
-
-      if (diffMs < 0) {
-        return 'Just now';
-      }
-
-      const minute = 60 * 1000;
-      const hour = 60 * minute;
-      const day = 24 * hour;
-      const week = 7 * day;
-      const year = 365 * day;
-
-      if (diffMs < minute) return 'Just now';
-      if (diffMs < hour) return Math.floor(diffMs / minute) + 'm';
-      if (diffMs < day) return Math.floor(diffMs / hour) + 'h';
-      if (diffMs < week) return Math.floor(diffMs / day) + 'd';
-      if (diffMs < year) return Math.floor(diffMs / week) + 'w';
-      return Math.floor(diffMs / year) + 'y';
-    }
-
-    function updatePostTimes() {
-      const timeElements = document.querySelectorAll('.post-time[data-time]');
-      timeElements.forEach(function(el) {
-        const dateString = el.getAttribute('data-time');
-        el.textContent = formatTimeAgo(dateString);
-      });
-    }
-
-    setInterval(function () {
-      try {
-        updatePostTimes();
-      } catch (err) {
-        console.log('interval updatePostTimes error:', err);
-      }
-    }, 60000);
+  }, 60000);
   </script>
 </body>
 </html>
